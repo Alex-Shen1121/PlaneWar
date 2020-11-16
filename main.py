@@ -83,6 +83,12 @@ def main():
 
     clock = pygame.time.Clock()
 
+    # 中弹照片索引
+    e1_destroy_index = 0
+    e2_destroy_index = 0
+    e3_destroy_index = 0
+    me_destroy_index = 0
+
     switch_image = True
 
     delay = 100
@@ -109,31 +115,80 @@ def main():
 
         screen.blit(background, (0, 0))
 
-        # 绘制大型敌机
-        for each in big_enemies:
-            each.move()
-            if switch_image:
-                screen.blit(each.image1, each.rect)
+        # 绘制小型敌机
+        for each in small_enemies:
+            if each.active:
+                each.move()
+                screen.blit(each.image, each.rect)
             else:
-                screen.blit(each.image2, each.rect)
-            if each.rect.bottom > -50:
-                enemy3_fly_sound.play()
+                # 毁灭
+                if not (delay % 3):
+                    if e1_destroy_index == 0:
+                        enemy1_down_sound.play()
+                    screen.blit(each.destroy_images[e1_destroy_index], each.rect)
+                    e1_destroy_index = (e1_destroy_index + 1) % 4
+                    if e1_destroy_index == 0:
+                        each.reset()
 
         # 绘制中型敌机
         for each in mid_enemies:
-            each.move()
-            screen.blit(each.image, each.rect)
+            if each.active:
+                each.move()
+                screen.blit(each.image, each.rect)
+            else:
+                # 毁灭
+                if not (delay % 3):
+                    if e2_destroy_index == 0:
+                        enemy2_down_sound.play()
+                    screen.blit(each.destroy_images[e2_destroy_index], each.rect)
+                    e2_destroy_index = (e2_destroy_index + 1) % 4
+                    if e2_destroy_index == 0:
+                        each.reset()
 
-        # 绘制小型敌机
-        for each in small_enemies:
-            each.move()
-            screen.blit(each.image, each.rect)
+        # 绘制大型敌机
+        for each in big_enemies:
+            if each.active:
+                each.move()
+                if switch_image:
+                    screen.blit(each.image1, each.rect)
+                else:
+                    screen.blit(each.image2, each.rect)
+                if each.rect.bottom == -50:
+                    enemy3_fly_sound.play()
+            else:
+                # 毁灭
+                if not (delay % 3):
+                    if e3_destroy_index == 0:
+                        enemy3_down_sound.play()
+                    screen.blit(each.destroy_images[e3_destroy_index], each.rect)
+                    e3_destroy_index = (e3_destroy_index + 1) % 6
+                    if e3_destroy_index == 0:
+                        enemy3_down_sound.stop()
+                        each.reset()
+
+        # 检测我方飞机是否被撞
+        enemies_down = pygame.sprite.spritecollide(me, enemies, False, pygame.sprite.collide_mask)
+        if enemies_down:
+            me.active = False
+            for e in enemies_down:
+                e.active = False
 
         # 绘制我方飞机
-        if switch_image:
-            screen.blit(me.image1, me.rect)
+        if me.active:
+            if switch_image:
+                screen.blit(me.image1, me.rect)
+            else:
+                screen.blit(me.image2, me.rect)
         else:
-            screen.blit(me.image2, me.rect)
+            # 毁灭
+            if not (delay % 3):
+                if me_destroy_index == 0:
+                    me_down_sound.play()
+                screen.blit(each.destroy_images[me_destroy_index], each.rect)
+                me_destroy_index = (me_destroy_index + 1) % 4
+                if me_destroy_index == 0:
+                    print("Game over!")
+                    running = False
 
         # 切换图片
         if not (delay % 5):

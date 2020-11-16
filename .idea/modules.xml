@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../GamePlaying/Breakout_Exp/Breakout_Exp/.idea/Breakout_Exp.iml" filepath="$PROJECT_DIR$/../../GamePlaying/Breakout_Exp/Breakout_Exp/.idea/Breakout_Exp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PlaneWar.iml" filepath="$PROJECT_DIR$/.idea/PlaneWar.iml" />
       <module fileurl="file://G:/DownLoad/飞机大战/.idea/飞机大战.iml" filepath="G:/DownLoad/飞机大战/.idea/飞机大战.iml" />
     </modules>
