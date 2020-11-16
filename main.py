@@ -2,10 +2,12 @@ import pygame
 from pygame.locals import *
 import sys
 import traceback
+import myplane
 
 pygame.init()
 pygame.mixer.init()
 
+# 设置屏幕分辨率
 bg_size = width, height = 480, 700
 screen = pygame.display.set_mode(bg_size)
 pygame.display.set_caption("飞机大战")
@@ -42,6 +44,9 @@ me_down_sound.set_volume(0.2)
 def main():
     pygame.mixer.music.play(-1)
 
+    # 生成我方飞机
+    me = myplane.MyPlane(bg_size)
+
     clock = pygame.time.Clock()
 
     running = True
@@ -52,7 +57,22 @@ def main():
                 pygame.quit()
                 sys.exit()
 
+        # 检测用户键盘操作
+        key_pressed = pygame.key.get_pressed()
+
+        if key_pressed[K_w] or key_pressed[K_UP]:
+            me.moveup()
+        if key_pressed[K_s] or key_pressed[K_DOWN]:
+            me.movedown()
+        if key_pressed[K_a] or key_pressed[K_LEFT]:
+            me.moveleft()
+        if key_pressed[K_d] or key_pressed[K_RIGHT]:
+            me.moveright()
+
         screen.blit(background, (0, 0))
+
+        # 绘制我方飞机
+        screen.blit(me.image, me.rect)
 
         pygame.display.flip()
 
