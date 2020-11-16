@@ -51,6 +51,8 @@ def main():
 
     switch_image = True
 
+    delay = 100
+
     running = True
 
     while running:
@@ -74,11 +76,18 @@ def main():
         screen.blit(background, (0, 0))
 
         # 绘制我方飞机
-        switch_image = not switch_image
         if switch_image:
             screen.blit(me.image1, me.rect)
         else:
             screen.blit(me.image2, me.rect)
+
+        # 切换图片
+        if not (delay % 5):
+            switch_image = not switch_image
+
+        delay -= 1
+        if not delay:
+            delay = 100
 
         pygame.display.flip()
 
