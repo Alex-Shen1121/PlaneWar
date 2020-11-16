@@ -2,7 +2,7 @@ import pygame
 from random import *
 
 
-class SmallEnermy(pygame.sprite.Sprite):
+class SmallEnemy(pygame.sprite.Sprite):
     def __init__(self, bg_size):
         pygame.sprite.Sprite.__init__(self)
 
@@ -26,7 +26,7 @@ class SmallEnermy(pygame.sprite.Sprite):
             randint(-5 * self.height, 0)
 
 
-class MidEnermy(pygame.sprite.Sprite):
+class MidEnemy(pygame.sprite.Sprite):
     def __init__(self, bg_size):
         pygame.sprite.Sprite.__init__(self)
 
@@ -50,7 +50,7 @@ class MidEnermy(pygame.sprite.Sprite):
             randint(-10 * self.height, -self.height)
 
 
-class BigEnermy(pygame.sprite.Sprite):
+class BigEnemy(pygame.sprite.Sprite):
 
     def __init__(self, bg_size):
         pygame.sprite.Sprite.__init__(self)
