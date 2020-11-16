@@ -49,6 +49,8 @@ def main():
 
     clock = pygame.time.Clock()
 
+    switch_image = True
+
     running = True
 
     while running:
@@ -72,7 +74,11 @@ def main():
         screen.blit(background, (0, 0))
 
         # 绘制我方飞机
-        screen.blit(me.image, me.rect)
+        switch_image = not switch_image
+        if switch_image:
+            screen.blit(me.image1, me.rect)
+        else:
+            screen.blit(me.image2, me.rect)
 
         pygame.display.flip()
 
