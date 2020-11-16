@@ -4,8 +4,8 @@ import pygame
 class MyPlane(pygame.sprite.Sprite):
     def __init__(self, bg_size):
         pygame.sprite.Sprite.__init__(self)
-        self.image1 = pygame.image.load("images/me1.png")
-        self.image2 = pygame.image.load("images/me2.png")
+        self.image1 = pygame.image.load("images/me1.png").convert_alpha()
+        self.image2 = pygame.image.load("images/me2.png").convert_alpha()
         self.rect = self.image1.get_rect()
         self.width, self.height = bg_size[0], bg_size[1]
         self.rect.left, self.rect.top = \
