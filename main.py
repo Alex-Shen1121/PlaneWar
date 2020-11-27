@@ -64,18 +64,18 @@ def add_big_enemies(group1, group2, num):
 
 
 def main():
-    pygame.mixer.music.play(-1)
 
+    pygame.mixer.music.play(-1)
     # 生成我方飞机
-    me = myplane.MyPlane(bg_size)
 
     # 生成敌机
+    me = myplane.MyPlane(bg_size)
     enemies = pygame.sprite.Group()
-    # 生成小型敌机
-    small_enemies = pygame.sprite.Group()
     add_small_enemies(small_enemies, enemies, 15)
     # 生成中型敌机
     mid_enemies = pygame.sprite.Group()
+    # 生成小型敌机
+    small_enemies = pygame.sprite.Group()
     add_mid_enemies(mid_enemies, enemies, 4)
     # 生成大型敌机
     big_enemies = pygame.sprite.Group()

@@ -4,10 +4,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="飞机大战" />
-    <orderEntry type="module" module-name="飞机大战" />
-    <orderEntry type="module" module-name="飞机大战" />
-    <orderEntry type="module" module-name="飞机大战" />
+    <orderEntry type="module" module-name="Breakout_Exp" />
+    <orderEntry type="module" module-name="Breakout_Exp" />
     <orderEntry type="module" module-name="Breakout_Exp" />
   </component>
 </module>
